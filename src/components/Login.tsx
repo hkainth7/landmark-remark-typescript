@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {updateDoc, doc, collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
-
-
 import '../login.css';
 import { useAuth } from "../contexts/AuthContext";
 
@@ -17,7 +15,6 @@ const Login = (props: Props) => {
     const navigate = useNavigate();
 
     const {login} = useAuth();
-    const {currentUser} = useAuth();
     const usersRef = collection(db, "users");
 
     const updateUserStatus = async () => {

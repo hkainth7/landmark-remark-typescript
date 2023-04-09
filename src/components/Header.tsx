@@ -29,7 +29,6 @@ const Header = (props: Props) => {
                 Landmark Remark
             </h1>
             <div>
-                {currentUser.email}
                 <Logout onClick={handleLogout}/>
             </div>
         </header>
