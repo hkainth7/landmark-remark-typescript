@@ -1,0 +1,22 @@
+@mixin div-flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  header {
+    
+    @include div-flex-row;
+
+    h1{
+      margin: 0;
+    }
+
+  }
+
+}
