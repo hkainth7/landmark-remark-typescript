@@ -17,9 +17,10 @@ export default function Landmark(){
     }, []);
 
     return(
-        <>
+        <div>
             <Header />
             <MapBox />
-        </>
+            {/* noteslist */}
+        </div>
     )
 }

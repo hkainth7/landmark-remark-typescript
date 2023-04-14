@@ -54,12 +54,21 @@ const Signup = (props: Props) => {
 
 
   return (
-    <div>
+    <div className='signup-page'>
         <div>
             <h2>Sign Up</h2>
             <form onSubmit={ e => handleSubmit(e)}>
-                <input type='text' placeholder='email' onChange={e => setCreateEmail(e.target.value)}/>
-                <input type='password' placeholder='password' onChange={e => setCreatePwd(e.target.value)}/>
+                <input  
+                    type='text' 
+                    placeholder='email' 
+                    onChange={e => setCreateEmail(e.target.value)}
+                />
+                <input 
+                    type='password' 
+                    placeholder='password' 
+                    onChange={e => setCreatePwd(e.target.value)} 
+                    autoComplete='false'
+                />
                 <button>Sign Up</button>
             </form>
         </div>

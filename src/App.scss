@@ -1,22 +1,93 @@
+$bg-button-color: #313131;
+$bg-button-hover: #4b4b4b;
+$border: 2px solid #313131;
+
+
 @mixin div-flex-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
+@mixin div-flex-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin button-style {
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 18px;
+	font-size: 20px;
+	background-color: $bg-button-color;
+	color: white;
+	cursor: pointer;
+}
+
+@mixin input-style {
+	border: $border;
+	padding: 10px;
+	font-size: 18px;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	margin: 0;
+}
+
+
 .App{
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
 
-  header {
-    
-    @include div-flex-row;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-items: center;
 
-    h1{
-      margin: 0;
-    }
+	header {
+		
+		@include div-flex-row;
 
-  }
+		h1{
+			margin: 0;
+		}
+
+	}
+
+	.login-page, .signup-page {
+		@include div-flex-column;
+		text-align: center;
+		height: 80vh;
+
+		div{
+			height: 100%;
+			@include div-flex-column;
+
+			h2 {
+				font-size: 50px;
+				font-weight: 300;
+			}
+
+			form {
+				@include div-flex-column;
+				margin-top: 3em;
+				gap: 2em;
+				
+				button {
+					@include button-style;
+					&:hover {
+						background-color: $bg-button-hover;
+					}
+				}
+
+				input {
+					@include input-style;
+					outline: none;
+				}
+
+			}
+		}
+	}
 
 }

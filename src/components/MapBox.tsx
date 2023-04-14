@@ -40,5 +40,4 @@ const MapBox = (props: Props) => {
   )
 }
 
-
 export default MapBox;

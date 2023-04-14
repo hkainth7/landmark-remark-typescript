@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../login.css';
 import { useAuth } from "../contexts/AuthContext";
 
-interface Props {}
+
+interface Props {
+    
+}
 
 const Login = (props: Props) => {
 
@@ -21,6 +23,7 @@ const Login = (props: Props) => {
 
         login(loginEmail, loginPwd)
         .then(() => {
+            setIsLoading(false);
             navigate('/landmark-remark');
         })
         .catch((error: string) => console.log(error));
@@ -29,17 +32,27 @@ const Login = (props: Props) => {
 
 
     return(
-        <div>
+        <div className='login-page'>
             <div>
                 <h2>Login</h2>
                 <form onSubmit={ e => handleLogin(e)}>
-                    <input type='text' placeholder='email' onChange={e => setLoginEmail(e.target.value)}/>
-                    <input type='password' placeholder='password' onChange={e => setLoginPwd(e.target.value)}/>
+                    <input 
+                        type='text' 
+                        placeholder='email' 
+                        onChange={e => setLoginEmail(e.target.value)}
+                    />
+                    <input 
+                        type='password' 
+                        placeholder='password' 
+                        onChange={e => setLoginPwd(e.target.value)} 
+                        autoComplete='false'
+                    />
                     <button>Login</button>
                 </form>
             </div>
             <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
             {isLoading && <p>Logging In...</p>}
+            
         </div>
     )
 }
