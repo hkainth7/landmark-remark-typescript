@@ -18,32 +18,37 @@ const Signup = (props: Props) => {
     const [userCreated, setUserCreated] = useState(false);
     const [createEmail, setCreateEmail] = useState('');
     const [createPwd, setCreatePwd] = useState('');
+    const [userId, setUserId] = useState("");
 
+    const addNewUser = async (userId: string) => {
+        const newUser: User = {
+            id: userId,
+            email: createEmail,
+            isActive: false
+        }
 
+        try {
+            await addDoc(userRef, newUser);
+            setIsLoading(false);
+            setUserCreated(true);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>):void => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 
         e.preventDefault();
 
         setIsLoading(true);
         signUp(createEmail, createPwd)
         .then((res:any) => {
-            console.log(res)
-            const userId = res.user.uid
-            const newUser: User = {
-                id: userId,
-                email: createEmail,
-                isActive: false
-            }
-            try {
-                addDoc(userRef, newUser);
-                setIsLoading(false);
-                setUserCreated(true);
-            } catch (error) {
-                console.log(error);
-            }
+            setUserId(res.user.uid);
         })
+        .then(() => addNewUser(userId))
         .catch((error:string) => console.log(error))
+        
+    
     }
 
 
@@ -57,12 +62,13 @@ const Signup = (props: Props) => {
                 <input type='password' placeholder='password' onChange={e => setCreatePwd(e.target.value)}/>
                 <button>Sign Up</button>
             </form>
-            </div>
-            <p>Have an account? <Link to="/">Login</Link></p>
-            {isLoading && <p>creating user please wait</p>}
-            {userCreated && <p>user successfully created. Please login</p>}
+        </div>
+        <p>Have an account? <Link to="/">Login</Link></p>
+    
+        {isLoading && <p>creating user please wait</p>}
+        {userCreated && <p>user successfully created. Please login</p>}
     </div>
   )
 }
 
-export default Signup
+export default Signup;

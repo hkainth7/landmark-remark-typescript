@@ -3,24 +3,22 @@ import { Logout } from '@mui/icons-material';
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
-interface Props {}
-
+interface Props {};
 
 const Header = (props: Props) => {
 
-    const [error, setError] = useState("");
-    const {currentUser, logout} = useAuth();
+    const {currentUser, updateUserStatus, logout} = useAuth();
     const navigate = useNavigate();
 
-    console.log(currentUser);
 
-    const handleLogout = async () => {
-        try {
-            await logout();
+    const handleLogout = (): void => {
+
+        updateUserStatus(currentUser, false).then(() => {
+            logout();
+        }).then(() => {
             navigate('/');
-        } catch (error) {
-            setError("logout failed")
-        }
+        }).catch((error:string) => console.log(error));
+
     }
 
     return(

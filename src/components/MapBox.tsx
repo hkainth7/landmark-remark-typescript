@@ -2,7 +2,9 @@ import React from 'react';
 import Map, {Marker, NavigationControl, GeolocateControl, FullscreenControl, Popup} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const MapBox = () => {
+interface Props {}
+
+const MapBox = (props: Props) => {
   return (
     <div>
       <Map

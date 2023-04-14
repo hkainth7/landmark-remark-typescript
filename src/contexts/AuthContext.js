@@ -1,6 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { auth } from '../firebase-config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {updateDoc, doc, collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase-config';
 
 const AuthContext = React.createContext();
 
@@ -27,6 +29,28 @@ export function AuthProvider({children}){
         return signOut(auth);
     }
 
+    async function updateUserStatus(currentUser, status){
+        
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("email", "==", `${currentUser.email}`));
+        const querySnapshot = await getDocs(q);
+        let userId = '';
+
+        querySnapshot.forEach((doc) => {
+            userId = doc.id;
+        });
+
+        const userRef = doc(db, 'users', `${userId}`)
+        const updateStatus = {isActive: status}
+        
+        try {
+            await updateDoc(userRef, updateStatus)    
+    
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
@@ -41,6 +65,7 @@ export function AuthProvider({children}){
         signUp,
         login,
         logout,
+        updateUserStatus
     
     }
 
