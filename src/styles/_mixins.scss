@@ -1,0 +1,29 @@
+@mixin div-flex-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin div-flex-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin button-style {
+	outline: none;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 18px;
+	font-size: 20px;
+	background-color: $bg-button-color;
+	color: white;
+	cursor: pointer;
+}
+
+@mixin input-style {
+	border: $border;
+	padding: 10px;
+	font-size: 18px;
+}

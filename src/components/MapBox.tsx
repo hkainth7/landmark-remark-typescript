@@ -2,6 +2,7 @@ import React from 'react';
 import Map, {Marker, NavigationControl, GeolocateControl, FullscreenControl, Popup} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useAuth } from "../contexts/AuthContext";
+import Header from './Header';
 
 interface Props {
   lat: number,
@@ -23,7 +24,7 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
   }
 
   return (
-    <div>
+  
       <Map
         logoPosition='bottom-right'
         mapboxAccessToken='pk.eyJ1IjoiaGthaW50aDciLCJhIjoiY2xmb2R0bHl6MHV0bjQ0bGt4YXhqd3MydyJ9.4U_TObIu2ZNsPrPsJ6vgeQ'
@@ -31,29 +32,22 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
           longitude: long,
           latitude: lat
         }}
-        style={{height: '100vh', width: '100%'}}
-        reuseMaps
+        style={{position:'absolute'}}
         mapStyle='mapbox://styles/mapbox/streets-v12'
+        onRender={(e) => e.target.resize()}
+        reuseMaps
         onClick={handleMapClick}
-        scrollZoom={false}
         attributionControl={false}
       >
         <Marker longitude={long} latitude={lat} />
+        <FullscreenControl position='top-right'/>
         <NavigationControl position='top-right' />
         <GeolocateControl trackUserLocation showUserHeading position='top-left'/>
-        <FullscreenControl position='top-right'/>
-        {/* <
-        {notes &&
-          notes.map(({id, long, lat, remark, createdBy}) => (
-            <Popup key={id} longitude={long} latitude={lat} closeButton={false} closeOnClick={false} >
-              <p>{remark}</p>
-              <p>Created by: {createdBy.split("@")[0]}</p>
-            </Popup>
-          ))
-        } */}
+        
         
       </Map>
-    </div>
+    
+
   )
 }
 

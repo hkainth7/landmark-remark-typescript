@@ -1,37 +1,8 @@
-$bg-button-color: #313131;
-$bg-button-hover: #4b4b4b;
-$border: 2px solid #313131;
+@import './styles//base';
+@import './styles/variables';
+@import './styles//mixins';
 
 
-@mixin div-flex-row {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-@mixin div-flex-column {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-@mixin button-style {
-	outline: none;
-	border: none;
-	border-radius: 4px;
-	padding: 10px 18px;
-	font-size: 20px;
-	background-color: $bg-button-color;
-	color: white;
-	cursor: pointer;
-}
-
-@mixin input-style {
-	border: $border;
-	padding: 10px;
-	font-size: 18px;
-}
 
 h1,h2,h3,h4,h5,h6,p {
 	margin: 0;
@@ -42,19 +13,6 @@ h1,h2,h3,h4,h5,h6,p {
 
 	width: 100vw;
 	height: 100vh;
-
-	header {
-		
-		@include div-flex-row;
-		padding: 10px 12px;
-
-		h1{
-			font-size: 30px;
-			margin: 0;
-			font-weight: 600;
-		}
-
-	}
 
 	.login-page, .signup-page {
 		display: grid;
@@ -95,7 +53,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 	.landmark {
 		width: 100%;
-		position: relative;
+
 	}
 
 }

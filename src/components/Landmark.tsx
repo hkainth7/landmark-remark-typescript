@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from './Header';
 import { useAuth } from "../contexts/AuthContext";
 import NavTabs from './NavTabs';
 
@@ -37,9 +36,8 @@ export default function Landmark(){
     }, []);
 
     return(
-        <div className='landmark'>
-            <Header />
-            <NavTabs long={long} lat={lat} setLat={setLat} setLong={setLong}/>
+        <div className='landmark' >
+            <NavTabs long={long} lat={lat} setLat={setLat} setLong={setLong} />
         </div>
     )
 }
