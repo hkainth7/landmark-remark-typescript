@@ -1,7 +1,7 @@
 export interface User {
-    id: string,
-    email: string,
-    isActive: boolean,
+    readonly id: string,
+    readonly email: string,
+    readonly isActive: boolean,
     userName?: string,
     birthdate?: string,
     location?: string,
