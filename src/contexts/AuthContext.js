@@ -51,6 +51,10 @@ export function AuthProvider({children}){
         }
     }
 
+    function roundToFive(num){
+        return +(Math.round(num + "e+5") + "e-5");
+    }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
@@ -65,7 +69,8 @@ export function AuthProvider({children}){
         signUp,
         login,
         logout,
-        updateUserStatus
+        updateUserStatus,
+        roundToFive
     
     }
 

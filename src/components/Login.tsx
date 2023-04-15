@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from "../contexts/AuthContext";
 
-
 interface Props {
     
 }
@@ -29,7 +28,6 @@ const Login = (props: Props) => {
         .catch((error: string) => console.log(error));
 
     }
-
 
     return(
         <div className='login-page'>

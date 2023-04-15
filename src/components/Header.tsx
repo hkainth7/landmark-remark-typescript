@@ -10,7 +10,6 @@ const Header = (props: Props) => {
     const {currentUser, updateUserStatus, logout} = useAuth();
     const navigate = useNavigate();
 
-
     const handleLogout = (): void => {
 
         updateUserStatus(currentUser, false).then(() => {
