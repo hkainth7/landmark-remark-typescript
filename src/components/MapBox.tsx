@@ -38,10 +38,10 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
         scrollZoom={false}
         attributionControl={false}
       >
-        <Marker longitude={0} latitude={0} />
+        <Marker longitude={long} latitude={lat} />
         <NavigationControl position='top-right' />
         <GeolocateControl trackUserLocation showUserHeading position='top-left'/>
-        <FullscreenControl position='bottom-left'/>
+        <FullscreenControl position='top-right'/>
         {/* <
         {notes &&
           notes.map(({id, long, lat, remark, createdBy}) => (

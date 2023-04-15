@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Landmark from './components/Landmark';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react'
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -12,13 +13,15 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/landmark-remark' element={<PrivateRoute> <Landmark /> </PrivateRoute>} />
-          </Routes>
-        </Router>
+        <ChakraProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+              <Route path='/landmark-remark' element={<PrivateRoute> <Landmark /> </PrivateRoute>} />
+            </Routes>
+          </Router>
+        </ChakraProvider>
       </AuthProvider>
     </div>
   );

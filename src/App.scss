@@ -42,20 +42,23 @@ h1,h2,h3,h4,h5,h6,p {
 
 	width: 100vw;
 	height: 100vh;
-	display: grid;
-	place-items: center;
 
 	header {
 		
 		@include div-flex-row;
+		padding: 10px 12px;
 
 		h1{
+			font-size: 30px;
 			margin: 0;
+			font-weight: 600;
 		}
 
 	}
 
 	.login-page, .signup-page {
+		display: grid;
+		place-items: center;
 		@include div-flex-column;
 		text-align: center;
 		height: 80vh;
@@ -92,6 +95,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 	.landmark {
 		width: 100%;
+		position: relative;
 	}
 
 }

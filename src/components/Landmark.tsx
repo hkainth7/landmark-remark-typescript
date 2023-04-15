@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from './Header';
-import MapBox from './MapBox';
 import { useAuth } from "../contexts/AuthContext";
+import NavTabs from './NavTabs';
 
 
 export default function Landmark(){
@@ -39,12 +39,7 @@ export default function Landmark(){
     return(
         <div className='landmark'>
             <Header />
-            <MapBox long={long} lat={lat} setLat={setLat} setLong={setLong}/>
-            <div>
-                <p>long: {long}</p>
-                <p>lat: {lat}</p>
-            </div>
-            {/* noteslist */}
+            <NavTabs long={long} lat={lat} setLat={setLat} setLong={setLong}/>
         </div>
     )
 }
