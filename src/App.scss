@@ -53,7 +53,23 @@ h1,h2,h3,h4,h5,h6,p {
 
 	.landmark {
 		width: 100%;
+		
+		form{
 
+			@include div-flex-row;
+
+			button {
+				@include button-style;
+				&:hover {
+					background-color: $bg-button-hover;
+				}
+			}
+
+			input {
+				@include input-style;
+				outline: none;
+			}
+		}
 	}
 
 }

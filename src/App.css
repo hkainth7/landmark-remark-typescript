@@ -108,4 +108,28 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .App .landmark {
   width: 100%;
+}
+.App .landmark form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.App .landmark form button {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 20px;
+  background-color: #313131;
+  color: white;
+  cursor: pointer;
+}
+.App .landmark form button:hover {
+  background-color: #4b4b4b;
+}
+.App .landmark form input {
+  border: 2px solid #313131;
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
 }/*# sourceMappingURL=App.css.map */

@@ -21,7 +21,7 @@ const Header = (props: Props) => {
     }
 
     return(
-        <header>
+        <header style={{display: 'flex', flexDirection:'row', padding:'5px', justifyContent:'space-between' }}>
             <h1>
                 Landmark Remark
             </h1>
