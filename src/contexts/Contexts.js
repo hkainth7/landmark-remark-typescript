@@ -4,14 +4,14 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import {updateDoc, doc, collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
 
-const AuthContext = React.createContext();
+const Context = React.createContext();
 
 export function useAuth(){
-    return useContext(AuthContext);
+    return useContext(Context);
 }
 
 
-export function AuthProvider({children}){
+export function ContextProvider({children}){
 
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
@@ -51,10 +51,6 @@ export function AuthProvider({children}){
         }
     }
 
-    function roundToFive(num){
-        return +(Math.round(num + "e+5") + "e-5");
-    }
-
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
@@ -70,14 +66,13 @@ export function AuthProvider({children}){
         login,
         logout,
         updateUserStatus,
-        roundToFive
     
     }
 
   return (
-    <AuthContext.Provider value={value}>
+    <Context.Provider value={value}>
         {!loading && children}
-    </AuthContext.Provider>
+    </Context.Provider>
   );
 }
 

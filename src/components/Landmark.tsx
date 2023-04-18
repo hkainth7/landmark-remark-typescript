@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/Contexts";
 import Header from './Header';
 import NavTabs from './NavTabs';
 

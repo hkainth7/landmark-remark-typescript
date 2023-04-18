@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import Map, {Marker, NavigationControl, GeolocateControl, FullscreenControl, Popup} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/Contexts";
+import {round} from 'lodash';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../firebase-config';
+import { Remark } from '../types/Types';
+
 
 interface Props {
   lat: number,
@@ -10,19 +15,50 @@ interface Props {
   setLong: any
 }
 
+
+
 const MapBox = ({lat, long, setLat, setLong}:Props) => {
 
   const [newNote, setNewNote] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const {roundToFive} = useAuth();
+  const remarkRef = collection(db, "remarks");
+  const {currentUser} = useAuth();
+
 
   const handleMapClick = (e:any ): void => {
-    const latitude = roundToFive(e.lngLat.lat);
-    const longitude = roundToFive(e.lngLat.lng);
+    const latitude = round(e.lngLat.lat, 4);
+    const longitude = round(e.lngLat.lng, 4);
 
     setLat(latitude);
     setLong(longitude);
   }
+
+  const addRemark = async (currentUser:any) => {
+    const newRemark: Remark = {
+      id: currentUser.uid,
+      email: currentUser.email,
+      latitude: lat,
+      longitude: long,
+      remark: newNote
+    }
+
+      try {
+          await addDoc(remarkRef, newRemark);
+          setIsLoading(false);
+          
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+
+    e.preventDefault();
+    addRemark(currentUser)
+    .then(() => setIsLoading(true));
+    
+}
 
   return (
     
@@ -46,9 +82,9 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
         <NavigationControl position='top-right' />
         <GeolocateControl trackUserLocation showUserHeading position='top-left'/>
       </Map>
-      <div style={{position:'absolute', bottom:'20px', left:'50%', transform:'translateX(-50%)'}}>
-        <form>
-          <input type='text' style={{marginRight:'10px'}} placeholder='Add note...' onChange={e => setNewNote(e.target.value)}/>
+      <div >
+        <form onSubmit={handleSubmit}>
+          <input type='text' style={{marginRight:'10px'}} placeholder={`lat: ${lat} long: ${long}`} onChange={e => setNewNote(e.target.value)}/>
           <button>Add</button>
         </form>
       </div>

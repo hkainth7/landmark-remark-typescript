@@ -3,7 +3,7 @@ import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Landmark from './components/Landmark';
-import { AuthProvider } from './contexts/AuthContext';
+import { ContextProvider } from './contexts/Contexts';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 import PrivateRoute from './components/PrivateRoute';
@@ -12,7 +12,7 @@ function App() {
  
   return (
     <div className="App">
-      <AuthProvider>
+      <ContextProvider>
         <ChakraProvider>
           <Router>
             <Routes>
@@ -22,7 +22,7 @@ function App() {
             </Routes>
           </Router>
         </ChakraProvider>
-      </AuthProvider>
+      </ContextProvider>
     </div>
   );
 }

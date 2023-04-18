@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { User } from '../types/UserType';
+import { User } from '../types/Types';
 import { Link } from 'react-router-dom';
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/Contexts";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 

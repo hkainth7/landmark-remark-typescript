@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Logout } from '@mui/icons-material';
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/Contexts";
 import { useNavigate } from 'react-router-dom';
 
 interface Props {};
