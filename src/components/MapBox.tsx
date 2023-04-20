@@ -3,16 +3,18 @@ import Map, {Marker, NavigationControl, GeolocateControl, FullscreenControl, Pop
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useAuth } from "../contexts/Contexts";
 import {round} from 'lodash';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, PartialWithFieldValue } from "firebase/firestore";
 import { db } from '../firebase-config';
-import { Remark } from '../types/Types';
+import { RemarkType } from '../types/Types';
+import { MapMouseEvent } from 'mapbox-gl';
+import { User } from 'firebase/auth';
 
 
 interface Props {
   lat: number,
   long: number,
-  setLat: any,
-  setLong: any
+  setLat: React.Dispatch<React.SetStateAction<number>>,
+  setLong: React.Dispatch<React.SetStateAction<number>>
 }
 
 
@@ -26,7 +28,7 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
   const {currentUser} = useAuth();
 
 
-  const handleMapClick = (e:any ): void => {
+  const handleMapClick = (e:MapMouseEvent ): void => {
     const latitude = round(e.lngLat.lat, 4);
     const longitude = round(e.lngLat.lng, 4);
 
@@ -34,8 +36,8 @@ const MapBox = ({lat, long, setLat, setLong}:Props) => {
     setLong(longitude);
   }
 
-  const addRemark = async (currentUser:any) => {
-    const newRemark: Remark = {
+  const addRemark = async (currentUser:User) => {
+    const newRemark: RemarkType = {
       id: currentUser.uid,
       email: currentUser.email,
       latitude: lat,

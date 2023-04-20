@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { User } from '../types/Types';
+import { UserType } from '../types/Types';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../contexts/Contexts";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
+import { User, UserCredential } from 'firebase/auth';
 
 
 interface Props {}
@@ -21,7 +22,7 @@ const Signup = (props: Props) => {
     const [userId, setUserId] = useState("");
 
     const addNewUser = async (userId: string) => {
-        const newUser: User = {
+        const newUser: UserType = {
             id: userId,
             email: createEmail,
             isActive: false
@@ -42,7 +43,7 @@ const Signup = (props: Props) => {
 
         setIsLoading(true);
         signUp(createEmail, createPwd)
-        .then((res:any) => {
+        .then((res:UserCredential) => {
             setUserId(res.user.uid);
         })
         .then(() => addNewUser(userId))

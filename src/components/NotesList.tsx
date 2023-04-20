@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const NotesList = () => {
+interface Props{
+  notes: any[],
+  getNotes: Promise<void>,
+  setNotes: React.Dispatch<React.SetStateAction<any[]>>
+}
+
+const NotesList = ({notes, getNotes, setNotes}:Props) => {
+
+  useEffect(() => {
+
+    getNotes.then(() => setNotes((notes) => [...notes])).catch((err:string) => console.log(err))
+  
+  },[]);
+
   return (
-    <div>NotesList</div>
+    <div>
+      {
+        notes &&
+          notes.map(({id, remark}) => {
+            return (
+              <div key={id}>
+                {remark}
+              </div>
+            )
+          })
+      }
+    </div>
   )
 }
 

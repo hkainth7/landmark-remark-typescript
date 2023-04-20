@@ -1,4 +1,4 @@
-export interface User {
+export interface UserType {
     readonly id: string,
     readonly email: string,
     readonly isActive: boolean,
@@ -7,9 +7,9 @@ export interface User {
     location?: string,
 }
 
-export interface Remark {
+export interface RemarkType {
     readonly id: string
-    readonly email: string,
+    readonly email: string | null,
     latitude: number,
     longitude: number,
     remark: string

@@ -3,17 +3,22 @@ import MapBox from './MapBox';
 import MapIcon from '@mui/icons-material/Map';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import NotesList from './NotesList';
 
 interface Props {
     lat: number,
     long: number,
-    setLat: any,
-    setLong: any,
+    setLat: React.Dispatch<React.SetStateAction<number>>,
+    setLong: React.Dispatch<React.SetStateAction<number>>,
+    notes: any[],
+    getNotes: Promise<void>,
+    setNotes: React.Dispatch<React.SetStateAction<any[]>>
     
   }
 
-const NavTabs = ({lat, long, setLat, setLong}:Props) => {
+const NavTabs = ({lat, long, setLat, setLong, getNotes, notes, setNotes}:Props) => {
   return (
     <Tabs isFitted align='center' variant='line'>
         <TabList>
@@ -26,6 +31,9 @@ const NavTabs = ({lat, long, setLat, setLong}:Props) => {
             <Tab>
               <PersonPinIcon fontSize='large'/>
             </Tab>
+            <Tab>
+              <SettingsApplicationsIcon fontSize='large'/>
+            </Tab>
         </TabList>
 
         <TabPanels>
@@ -35,10 +43,13 @@ const NavTabs = ({lat, long, setLat, setLong}:Props) => {
             </TabPanel>
             
             <TabPanel>
-            <p>two!</p>
+              <NotesList getNotes={getNotes} notes={notes} setNotes={setNotes}/>
             </TabPanel>
             <TabPanel>
-            <p>three!</p>
+              <p>who's online!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>profile!</p>
             </TabPanel>
         </TabPanels>
     </Tabs>
